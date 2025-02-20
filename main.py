@@ -14,5 +14,9 @@ def main():
 
     print(pokemon_df)
 
+    print(pokemon_df.columns)
+
+
+
 if __name__ == "__main__":
     main()
