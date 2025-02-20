@@ -1,26 +1,26 @@
 import pandas as pd
-from sqlalchemy import create_engine
 
 DB_FILE = "/Users/mango/projects/data-analytics/sql-practice/03-pokemon.db"
 DB_PATH = f"sqlite+pysqlite:///{DB_FILE}"
 
 
 def main():
+    pokemon_df = pd.read_sql_table("pokemon", DB_PATH)
+    pokemon_types_df = pd.read_sql_table("types", DB_PATH)
 
-    pokemon_df = pd.read_sql_table('pokemon', DB_PATH)
-    pokemonTypes_df = pd.read_sql_table('types', DB_PATH)
+    mergedPokemon = pokemon_df.merge(pokemon_types_df, how="left", on="id")
 
-    pokemon_df.merge(pokemonTypes_df, on='id')
+    print(mergedPokemon)
 
-    print(pokemon_df)
+    print(mergedPokemon.columns)
 
-    print(pokemon_df.columns)
+    print(mergedPokemon.shape)
 
-    print(pokemon_df.shape)
+    print(mergedPokemon["name_x"].loc[146])
 
-    print(pokemon_df['name'].loc[146])
-
-
+    pokTypeCount = mergedPokemon[(mergedPokemon["typeOne"] == 6)]
+    typeCount = len(pokTypeCount)
+    print(typeCount)
 
 if __name__ == "__main__":
     main()
