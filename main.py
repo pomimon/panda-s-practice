@@ -15,6 +15,8 @@ def main():
     print(pokemon_df)
 
     print(pokemon_df.columns)
+    print(pokemon_df.shape)
+
 
 
 
