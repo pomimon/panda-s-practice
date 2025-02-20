@@ -15,8 +15,10 @@ def main():
     print(pokemon_df)
 
     print(pokemon_df.columns)
+
     print(pokemon_df.shape)
 
+    print(pokemon_df['name'].loc[146])
 
 
 
